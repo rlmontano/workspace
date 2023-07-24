@@ -12,8 +12,9 @@ class Solution {
             if( n == 0 ) return "";
 
             std::vector<std::vector<bool>> dp( n, std::vector<bool>( n, false ) );
-            for( int i = 0; i < n; ++i ) dp[i][i] = true;
-            for( int i = 0; i < n - 1; ++i ) dp[i][i + 1] = s[i] == s[i + 1];
+            for( int i = 0; i < n; ++i ) dp[i][i] = true; // initialize truth table
+            for( int i = 0; i < n - 1; ++i ) dp[i][i + 1] = s[i] == s[i + 1]; // initialize for even palindrome
+            // dynamic programming, continue iterating through 2D-array as sub-problems with bottom-up approach
             for( int i = n - 3; i >= 0; --i )
             {
                 for( int j = i + 2; j < n; ++j )
@@ -42,6 +43,6 @@ int main( void )
     std::cout << __PRETTY_FUNCTION__ << std::endl;
     Solution* s = new Solution();
 
-    std::cout << s->longestPalindrome( "babad" ) << std::endl;
+    std::cout << s->longestPalindrome( "dcbaabced" ) << std::endl;
     return true;
 }
